@@ -13,11 +13,8 @@ function App() {
       .then((res) => res.json())
       .then((data) => { 
         console.log(data);
-
         setLocation(data);
         setPokemon(data);
-        console.log(location && location?.results);
-
       });
   }, []);
 
