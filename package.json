@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "jotai": "^2.1.0"
+  },
+  "devDependencies": {
+    "@swc-jotai/react-refresh": "^0.0.8"
+  }
+}
