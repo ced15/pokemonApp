@@ -54,7 +54,7 @@ function App() {
         <Arena
             location={areaLocation[startBattle[1]]}
           />
-          <button onClick={()=>setStartBattle([false,-1])}>Back</button>
+          <button onClick={()=>setStartBattle([false,-1])}>Go Back</button>
         </>
       )}
     </div>
