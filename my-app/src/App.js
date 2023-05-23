@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Arena } from "./components/Arena";
-import LocationTasks from "./components/LocationTask";
+import Arena from "./components/Arena";
 
 function App() {
-  const [location, setLocation] = useState({});
+  const [locations, setLocation] = useState({});
   const [areaLocation, setAreaLocation] = useState([]);
   const [startBattle, setStartBattle] = useState([false, -1]);
   const [pokemon, setPokemon] = useState({});
+  const [load, setLoad] = useState(false)
+  
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/location")
@@ -24,49 +25,37 @@ function App() {
 
   useEffect(() => {
     async function getStuff() {
-      // console.clear();
       for (let i = 1; i <= 20; i++) {
         const data = await fetcher(
           `https://pokeapi.co/api/v2/location-area/${i}`
         );
-        console.log(data);
+
         setAreaLocation((oldAreaLocation) => [...oldAreaLocation, data]);
       }
     }
     getStuff();
   }, []);
 
-  useEffect(() => {
-    async function getPokemon() {
-      for (let i = 1; i <= 100; i++) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
-          .then((res) => res.json())
-          .then((dataPokemon) => {
-            setPokemon(dataPokemon.sprites.back_default)
-            // console.log(dataPokemon)
-        })
-      }
-    }
-    getPokemon();
-    console.log(pokemon);
 
-  }, []);
-
-  function showArena(i) {
-    setStartBattle([true, i]);
-  }
-
+  const showLocation = (e) => {
+    setStartBattle([true, e.target.id]);
+  };
+  
   return (
     <div className="App">
-      {startBattle[0] ? (
-        <Arena pokemons={areaLocation[startBattle[1]].pokemon_encounters} />
-      ) : (
-        <LocationTasks
-          location={location}
-          areaLocation={areaLocation}
-          showArena={showArena}
-          setImgPokemon={pokemon}
-        />
+      {startBattle[0] === false &&
+        locations.results?.map((location, index) => (
+          <button onClick={showLocation} id={index} key={index}>
+            {location.name}
+          </button>
+        ))}
+      {startBattle[0] ===true && (
+        <>
+        <Arena
+            location={areaLocation[startBattle[1]]}
+          />
+          <button onClick={()=>setStartBattle([false,-1])}>Back</button>
+        </>
       )}
     </div>
   );
