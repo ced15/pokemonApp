@@ -45,19 +45,33 @@ const SelectPokemon = () => {
         <Locations />
       ) : (
         <div>
-          <button
+          <button id="location" className="arenaLocation"
             onClick={() => {
               setShowLocations(true);
             }}
           >
             Show Locations
           </button>
-            {load ? (
+          {load ? (
             pokemon?.map((poke, index) => (
-              <div key={index}>
-                <button onClick={() => handlePokemonSelect(poke)}>Select: {poke.name}</button>
-                <button onClick={() => handlePokemonDeselect(poke)}>Deselect: {poke.name}</button>
-                <img src={poke.sprites.front_default} alt={poke.name} />
+              <div id= "pokeDiv" key={index}>
+                <button
+                  className="cta"
+                  onClick={() => handlePokemonSelect(poke)}
+                >
+                  Select: {poke.name}
+                </button>
+                <button
+                  className="cta"
+                   onClick={() => handlePokemonDeselect(poke)}
+                >
+                  Deselect: {poke.name}
+                </button>
+                <img
+                  id="pokemon"
+                  src={poke.sprites.other.home.front_default}
+                  alt={poke.name}
+                />
               </div>
             ))
           ) : (

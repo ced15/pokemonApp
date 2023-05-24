@@ -35,7 +35,7 @@ const Area = ({ i }) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonName}`)
           .then((res) => res.json())
           .then((data) => {
-            setRandomPokemonImage(data.sprites.front_default);
+            setRandomPokemonImage(data.sprites.other.home.front_default);
           })
           .catch((error) => {
             console.log(error);
@@ -45,19 +45,32 @@ const Area = ({ i }) => {
     }, [area]);
 
   return (
-      <div>
+    <div>
       {goBack ? (
         <Locations />
       ) : randomPokemon ? (
         <div>
+          <div id="battle"></div>
           <h3>{randomPokemon}</h3>
           {randomPokemonImage ? (
-            <img src={randomPokemonImage} alt={randomPokemon} />
+            <img
+              id="pokemonEnemy"
+              src={randomPokemonImage}
+              alt={randomPokemon}
+            />
           ) : (
             <p>Loading the pokemon...</p>
           )}
-            <button onClick={() => setGoBack(true)}>Go Back</button>
-            <button>Start Battle!</button>
+          <button
+            id="location"
+            className="battleButt"
+            onClick={() => setGoBack(true)}
+          >
+            Go Back
+          </button>
+          <button id="location" className="battleButt">
+            Start Battle!
+          </button>
         </div>
       ) : (
         <h2>Loading...</h2>

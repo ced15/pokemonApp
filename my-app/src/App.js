@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       {!loadStart && (
-        <button onClick={handleStartClick}>
+        <button onClick={handleStartClick} id="button">
           Start and choose your Pokemon!
         </button>
       )}
