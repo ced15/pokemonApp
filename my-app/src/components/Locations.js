@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Area from "./Area";
+import SelectPokemon from "./SelectPokemon";
 
 const Locations = () => {
   const [locations, setLocations] = useState([]);
   const [showArea, setShowArea] = useState(false);
   const [selectedLocationIndex, setSelectedLocationIndex] = useState(-1);
+  const [goBack, setGoBack] = useState(false);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/location")
@@ -21,7 +23,9 @@ const Locations = () => {
 
   return (
     <div>
-      {showArea ? (
+      {goBack ? (
+        <SelectPokemon />
+      ) : showArea ? (
         <Area i={selectedLocationIndex + 1} />
       ) : (
         <div>
@@ -35,6 +39,7 @@ const Locations = () => {
               </li>
             ))}
           </ul>
+          <button onClick={() => setGoBack(true)}>Go Back</button>
         </div>
       )}
     </div>

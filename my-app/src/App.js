@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import SelectPokemon from "./components/SelectPokemon";
 import Locations from "./components/Locations";
 
-
 function App() {
-
+  
   const [loadStart, setLoadStart] = useState(false);
   const [showLocations, setShowLocations] = useState(false);
 
