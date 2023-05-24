@@ -1,54 +1,46 @@
 import React, { useState, useEffect } from "react";
+import { useAtom } from "jotai";
+import state from "./State";
 
 export default function Arena({ location }) {
   const [sprites, setSprites] = useState(null);
   const [load, setLoad] = useState(false);
-  let encounterPoke = [];
+  const [encounter, setEncounter] = useAtom(state.enemyPokemon);
+    const [encounterStart, setEncounterStart] = useAtom(state.encounterStart);
+    const [selPokemon, setSelPokemon] = useState(true);
 
-  let pokeArr = [];
-  location.pokemon_encounters?.map((pokemons) => pokeArr.push(pokemons));
+  let encounterPoke = location.pokemon_encounters[Math.floor(Math.random() * location.pokemon_encounters.length)]
 
   useEffect(() => {
-    pokeArr?.map((poke) => {
-      fetch(`${poke.pokemon.url}`)
-        .then((res) => res.json())
-        .then((data) => {
-          encounterPoke.push(data);
-        });
-    });
+    fetch(`${encounterPoke.pokemon.url}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setEncounter(data)
+      })
     setTimeout(() => {
-      setSprites(encounterPoke);
-      setLoad(true);
-    }, 1000);
+      // setSprites(encounterPoke)
+      setLoad(true)
+    },1000)
   }, []);
+
+  function rememberPokemon(e) {
+    setEncounterStart(e);
+    setSelPokemon(false);
+  }
 
   return (
     <div>
       {load ? (
-        pokeArr.length > 0 ? (
-          pokeArr?.map((poke, index) => {
-            return (
-              <h3 key={index}>
-                {poke.pokemon.name}
-                {sprites?.map((sprite, index) => {
-                  if (sprite.name === poke.pokemon.name) {
-                    return (
-                      <img key={index} src={sprite.sprites.front_default} />
-                    );
-                  }
-                })}
-              </h3>
-            );
-          })
-        ) : (
-          <div>
-            <h2>This location doesn't seem to have any pokémon</h2>
-            <button>Go back</button>
-          </div>
-        )
+        <>
+        <button onClick={(encounter)=>rememberPokemon(encounter)}>{encounter.name}</button>
+        <img src={encounter.sprites.front_default}/>
+        </>
       ) : (
-        <h2>Loading...</h2>
-      )}
+          <h2>Loading...</h2>
+      )
+     }
     </div>
+
   );
 }

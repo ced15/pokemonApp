@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Arena from "./components/Arena";
+import SelectPokemon from "./components/SelectPokemon";
+import { useAtom } from "jotai";
+import state from "./components/State";
 
 function App() {
+
+  // const [locationStart, setLocationStart] = useState([false,-1])
+  const [start, setStart] = useState([false, -1]);
   const [locations, setLocation] = useState({});
   const [areaLocation, setAreaLocation] = useState([]);
-  const [startBattle, setStartBattle] = useState([false, -1]);
-  const [pokemon, setPokemon] = useState({});
-  const [load, setLoad] = useState(false)
-  
+  const [encounterStart, setEncounterStart] = useAtom(state.encounterStart);
+
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/location")
@@ -36,27 +40,34 @@ function App() {
     getStuff();
   }, []);
 
-
   const showLocation = (e) => {
-    setStartBattle([true, e.target.id]);
+    setStart([true, e.target.id]);
+    // setEncounterStart(true)
+    console.log(start)
   };
-  
+
+  const showStartBattle = (e) => {
+    setStart([start[0] - 1, e.target.id])
+  }
+
+
+
   return (
     <div className="App">
-      {startBattle[0] === false &&
+      {start[0] === false && <button onClick={showLocation}>Start Battle</button>}
+      {start[0] === true  && <SelectPokemon location={areaLocation[start[1]]} />}
+      {(encounterStart === true || start[0] === false) &&
         locations.results?.map((location, index) => (
           <button onClick={showLocation} id={index} key={index}>
             {location.name}
           </button>
         ))}
-      {startBattle[0] ===true && (
+      {/* {start[0] === 3 && (
         <>
-        <Arena
-            location={areaLocation[startBattle[1]]}
-          />
-          <button onClick={()=>setStartBattle([false,-1])}>Go Back</button>
+          <Arena location={areaLocation[start[1]]} />
+          <button onClick={showStartBattle}>Go Back</button>
         </>
-      )}
+      )} */}
     </div>
   );
 }
