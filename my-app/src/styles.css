@@ -334,6 +334,16 @@ body {
     /* z-index: 1; */
     width: 100%;
 }
+#finalBatt{
+        top: 0%;
+            left: 0%;
+            position: absolute;
+            background-image: url("../img/battle.png");
+            background-size: cover;
+            height: 100%;
+            /* z-index: 1; */
+            width: 100%;
+}
 
 h2 {
     background-color: rgba(0, 0, 255, 0.336);
@@ -738,4 +748,87 @@ strong {
     flex-wrap: wrap;
     gap: 2em;
     padding: 2em;
+}
+
+#enemyPoke {
+    position: absolute;
+    display: block;
+    height: 400px;
+    width: 400px;
+    top: 32%;
+    left: 77%;
+    /* border: solid 2px blue; */
+    /* margin-top: 20px; */
+    z-index: 2;
+}
+
+#myPoke {
+    position: absolute;
+    display: block;
+    height: 400px;
+    width: 400px;
+    top: 29%;
+    left: 28%;
+    /* border: solid 2px blue; */
+    /* margin-top: 20px; */
+    z-index: 2;
+}
+#img {
+    position: absolute;
+    /* Changed to absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#hp{
+            color: #090909;
+            padding: 0.7em 1.7em;
+            font-size: 28px;
+            border-radius: 0.5em;
+            background: #e8e8e875;
+            border: 1px solid #e8e8e8;
+            transition: all .3s;
+            box-shadow: 6px 6px 12px #c5c5c5,
+                -6px -6px 12px #ffffff;
+                text-align: center;
+    
+}
+
+#attack {
+    height: 10%;
+    width: 30%;
+    top: 3%;
+    left: 33%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #7e97b8;
+    background-color: #e0e8ef;
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: rgba(255, 255, 255, 0.333);
+    border-radius: 40px 40px 40px 40px;
+    padding: 16px 24px 16px 28px;
+    transform: translate(0px, 0px) rotate(0deg);
+    transition: 0.2s;
+    box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
+}
+
+#attack:hover {
+    color: #516d91;
+    background-color: #E5EDF5;
+    box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+}
+
+#attack:active {
+    box-shadow: none;
 }

@@ -11,7 +11,7 @@ const SelectPokemon = () => {
   let pokeArr = [];
 
   useEffect(() => {
-    for (let id = 1; id <= 3; id++) {
+    for (let id = 1; id <= 90; id++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((res) => res.json())
         .then((data) => {

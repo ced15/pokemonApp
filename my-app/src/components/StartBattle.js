@@ -39,16 +39,39 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
         }
     }
   return (
-      <div>
-          <div>
-          <img src={selectedPokemon[0].sprites.other.home.front_default} alt="Attacker" />
-              <h1>{ myPokemonHP }</h1>
-              <button onClick={handleAttack}>Attack</button>
-          </div>
-          <div>
-              <img src={randomPokemonName} alt="Defender"/>
-              <h1>{enemyHP}</h1>
-          </div>
+    <div id="finalBatt">
+      <button id="attack" onClick={handleAttack}>
+        
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          stroke="currentColor"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="css-i6dzq1"
+        >
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>{" "}
+        Attack!
+      </button>
+      {/* <button id="attack" onClick={handleAttack}>
+        Attack
+      </button> */}
+      <div id="myPoke">
+        <h1 id="hp"> {myPokemonHP}</h1>
+        <img
+          id="img"
+          src={selectedPokemon[0].sprites.other.home.front_default}
+          alt="Attacker"
+        />
+      </div>
+      <div id="enemyPoke">
+        <h1 id="hp">{enemyHP}</h1>
+        <img id="img" src={randomPokemonName} alt="Defender" />
+      </div>
     </div>
   );
 }
