@@ -6,12 +6,12 @@ const SelectPokemon = () => {
   const [load, setLoad] = useState(false);
   const [showLocations, setShowLocations] = useState(false);
   const [goBack, setGoBack] = useState(false);
-  const [inventory,setInventory] = useState([])
+  const [inventory, setInventory] = useState([]);
 
   let pokeArr = [];
 
   useEffect(() => {
-    for (let id = 1; id <= 2; id++) {
+    for (let id = 1; id <= 90; id++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then((res) => res.json())
         .then((data) => {
@@ -24,28 +24,30 @@ const SelectPokemon = () => {
     }, 2000);
   }, []);
 
-  const handlePokemonSelect= (pokemon) => {
-    const isSelectedPokemon = inventory.includes(pokemon)
+  const handlePokemonSelect = (pokemon) => {
+    const isSelectedPokemon = inventory.includes(pokemon);
     if (!isSelectedPokemon) {
-      setInventory((prevInventory) => [...prevInventory, pokemon])
+      setInventory((prevInventory) => [...prevInventory, pokemon]);
     }
-  }
+  };
 
-  const handlePokemonDeselect= (pokemon) => {
-    setInventory((prevInventory)=>prevInventory.filter((p)=>p !== pokemon))
-  }
-  
+  const handlePokemonDeselect = (pokemon) => {
+    setInventory((prevInventory) => prevInventory.filter((p) => p !== pokemon));
+  };
+
   useEffect(() => {
-    console.log(inventory)
-  },[inventory])
+    console.log(inventory);
+  }, [inventory]);
 
   return (
     <div>
       {showLocations ? (
         <Locations />
       ) : (
-        <div>
-          <button id="location" className="arenaLocation"
+        <div className="holder">
+          <button
+            id="location"
+            className="arenaLocation"
             onClick={() => {
               setShowLocations(true);
             }}
@@ -54,7 +56,12 @@ const SelectPokemon = () => {
           </button>
           {load ? (
             pokemon?.map((poke, index) => (
-              <div id= "pokeDiv" key={index}>
+              <div className="pokeDiv" key={index}>
+                <img
+                  id="pokemon"
+                  src={poke.sprites.other.home.front_default}
+                  alt={poke.name}
+                />
                 <button
                   className="cta"
                   onClick={() => handlePokemonSelect(poke)}
@@ -63,26 +70,22 @@ const SelectPokemon = () => {
                 </button>
                 <button
                   className="cta"
-                   onClick={() => handlePokemonDeselect(poke)}
+                  onClick={() => handlePokemonDeselect(poke)}
                 >
                   Deselect: {poke.name}
                 </button>
-                <img
-                  id="pokemon"
-                  src={poke.sprites.other.home.front_default}
-                  alt={poke.name}
-                />
               </div>
             ))
           ) : (
-            <h2>Loading...</h2>
+            <div className="loader">
+              <span className="loader-text">loading</span>
+              <span className="load"></span>
+            </div>
           )}
         </div>
       )}
     </div>
   );
-}
-
-
+};
 
 export default SelectPokemon;

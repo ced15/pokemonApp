@@ -4,7 +4,7 @@ import Locations from "./Locations";
 const Area = ({ i }) => {
   const [area, setArea] = useState({});
   const [randomPokemon, setRandomPokemon] = useState(null);
-  const [randomPokemonImage, setRandomPokemonImage] = useState(null)
+  const [randomPokemonImage, setRandomPokemonImage] = useState(null);
   const [goBack, setGoBack] = useState(false);
 
   async function fetcher(url) {
@@ -23,26 +23,26 @@ const Area = ({ i }) => {
     getStuff();
   }, [i]);
 
-    useEffect(() => {
-      if (area.pokemon_encounters && area.pokemon_encounters.length>0) {
-        const randomIndex = Math.floor(
-          Math.random() * area.pokemon_encounters.length
-        );
-        const randomPokemonName =
-          area.pokemon_encounters[randomIndex].pokemon.name;
-        setRandomPokemon(randomPokemonName);
+  useEffect(() => {
+    if (area.pokemon_encounters && area.pokemon_encounters.length > 0) {
+      const randomIndex = Math.floor(
+        Math.random() * area.pokemon_encounters.length
+      );
+      const randomPokemonName =
+        area.pokemon_encounters[randomIndex].pokemon.name;
+      setRandomPokemon(randomPokemonName);
 
-        fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonName}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setRandomPokemonImage(data.sprites.other.home.front_default);
-          })
-          .catch((error) => {
-            console.log(error);
-            setRandomPokemonImage(null);
-          });
-      }
-    }, [area]);
+      fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemonName}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setRandomPokemonImage(data.sprites.other.home.front_default);
+        })
+        .catch((error) => {
+          console.log(error);
+          setRandomPokemonImage(null);
+        });
+    }
+  }, [area]);
 
   return (
     <div>
@@ -59,7 +59,10 @@ const Area = ({ i }) => {
               alt={randomPokemon}
             />
           ) : (
-            <p>Loading the pokemon...</p>
+            <div className="loader">
+              <span className="loader-text">loading</span>
+              <span className="load"></span>
+            </div>
           )}
           <button
             id="location"
@@ -73,12 +76,13 @@ const Area = ({ i }) => {
           </button>
         </div>
       ) : (
-        <h2>Loading...</h2>
+        <div className="loader">
+          <span className="loader-text">loading</span>
+          <span className="load"></span>
+        </div>
       )}
     </div>
   );
 };
-
-
 
 export default Area;
