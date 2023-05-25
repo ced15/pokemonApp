@@ -4,7 +4,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
     const [enemyHP, setEnemyHP] = useState(dataRandomPokemon.stats[0].base_stat)
     const [myPokemonHP, setMyPokemonHP] = useState(selectedPokemon[0].stats[0].base_stat)
     const [turn, setTurn] = useState(0)
-    console.log(selectedPokemon);
+    const [victory,setVictory] = useState(false)
 
     const calculateDamageEnemy = () => {
         const Z = Math.floor(Math.random() * (255 - 217 + 1)) + 217;
@@ -25,6 +25,9 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
             setEnemyHP(newEnemyHP)
             console.log(`Damage enemy inflicted: ${damage}`);
             console.log(`Defender's enemy HP: ${newEnemyHP}`)
+            if (enemyHP <= 0) {
+                alert("Your Pokemon has won !")
+            }
     
             setTurn(1)
         } else {
@@ -34,20 +37,25 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
                        console.log(`Damage My Pokemon inflicted: ${damageMyPokemon}`);
                        console.log(`Defender's My Pokemon HP: ${newMyPokemonHp}`);
 
-            setTurn(0);
+            if (myPokemonHP <= 0) {
+                alert("Your Pokemon has been defeated !");
+                
+            }
 
+            setTurn(0);
         }
+
     }
   return (
       <div>
           <div>
           <img src={selectedPokemon[0].sprites.other.home.front_default} alt="Attacker" />
-              <h1>{ myPokemonHP }</h1>
-              <button onClick={handleAttack}>Attack</button>
+              <h1>{ myPokemonHP } HP</h1>
+              <button class="attack-btn" onClick={handleAttack}>Attack</button>
           </div>
           <div>
               <img src={randomPokemonName} alt="Defender"/>
-              <h1>{enemyHP}</h1>
+              <h1>{enemyHP} HP </h1>
           </div>
     </div>
   );
