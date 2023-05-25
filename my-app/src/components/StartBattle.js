@@ -25,8 +25,8 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
             setEnemyHP(newEnemyHP)
             console.log(`Damage enemy inflicted: ${damage}`);
             console.log(`Defender's enemy HP: ${newEnemyHP}`)
-            if (enemyHP <= 0) {
-                alert("Your Pokemon has won !")
+            if (newEnemyHP <= 0) {
+              alert("Your Pokemon has won !");
             }
     
             setTurn(1)
@@ -37,9 +37,8 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
                        console.log(`Damage My Pokemon inflicted: ${damageMyPokemon}`);
                        console.log(`Defender's My Pokemon HP: ${newMyPokemonHp}`);
 
-            if (myPokemonHP <= 0) {
-                alert("Your Pokemon has been defeated !");
-                
+            if (newMyPokemonHp <= 0) {
+              alert("Your Pokemon has been defeated !");
             }
 
             setTurn(0);
@@ -59,7 +58,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="css-i6dzq1"
+          className="css-i6dzq1"
         >
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
         </svg>{" "}
@@ -69,7 +68,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
         Attack
       </button> */}
       <div id="myPoke">
-        <h1 id="hp"> {myPokemonHP}</h1>
+        <h1 id="hp">HP: {myPokemonHP}</h1>
         <img
           id="img"
           src={selectedPokemon[0].sprites.other.home.front_default}
@@ -77,7 +76,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
         />
       </div>
       <div id="enemyPoke">
-        <h1 id="hp">{enemyHP}</h1>
+        <h1 id="hp">HP: {enemyHP}</h1>
         <img id="img" src={randomPokemonName} alt="Defender" />
       </div>
     </div>

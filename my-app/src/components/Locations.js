@@ -30,14 +30,14 @@ const Locations = ({selectedPokemon}) => {
                 selectedPokemon={selectedPokemon}  />
       ) : (
         <div>
-          <button class="loc" type="button">
+          <button className="loc" type="button">
             <strong>Locations</strong>
             <div id="container-stars">
               <div id="stars"></div>
             </div>
             <div id="glow">
-              <div class="circle"></div>
-              <div class="circle"></div>
+              <div className="circle"></div>
+              <div className="circle"></div>
             </div>
           </button>
 
