@@ -176,6 +176,7 @@ body {
 }
 
 #pokemon{
+    display: inline;
     position: absolute;
     display: block;
     height: 300px;
@@ -191,8 +192,8 @@ body {
     display: block;
     height: 400px;
     width: 400px;
-    top:50%;
-    left: 70% !important;
+    top:40%;
+    left: 75%;
     margin-top: 20px;
     z-index: 2;
 }
@@ -291,7 +292,7 @@ body {
     top:0%;
     left:0%;
     position: absolute;
-    background-image: url("https://cdn.discordapp.com/attachments/1080482388221640805/1111033442520530994/d843okx-eb13e8e4-0fa4-4fa9-968a-e0f36ff168de.png");
+    background-image: url("https://cdn.discordapp.com/attachments/446308522142203907/1111180029318152222/12-for.png");
     background-size: cover;
     height: 100%;
     /* z-index: 1; */
