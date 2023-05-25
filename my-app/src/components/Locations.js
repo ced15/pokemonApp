@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Area from "./Area";
 import SelectPokemon from "./SelectPokemon";
 
-const Locations = () => {
+const Locations = ({selectedPokemon}) => {
   const [locations, setLocations] = useState([]);
   const [showArea, setShowArea] = useState(false);
   const [selectedLocationIndex, setSelectedLocationIndex] = useState(-1);
@@ -26,7 +26,8 @@ const Locations = () => {
       {goBack ? (
         <SelectPokemon />
       ) : showArea ? (
-        <Area i={selectedLocationIndex + 1} />
+          <Area i={selectedLocationIndex + 1}
+                selectedPokemon={selectedPokemon}  />
       ) : (
         <div>
           <button class="loc" type="button">

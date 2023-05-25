@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Locations from "./Locations";
+import StartBattle from "./StartBattle";
 
-const Area = ({ i }) => {
+const Area = ({ i, selectedPokemon }) => {
   const [area, setArea] = useState({});
   const [randomPokemon, setRandomPokemon] = useState(null);
   const [randomPokemonImage, setRandomPokemonImage] = useState(null);
   const [goBack, setGoBack] = useState(false);
+  const [showBattle, setShowBattle] = useState(false)
+  const [dataRandomPokemon, setDataRandomPokemon] = useState([])
 
   async function fetcher(url) {
     const req = await fetch(url);
@@ -36,6 +39,7 @@ const Area = ({ i }) => {
         .then((res) => res.json())
         .then((data) => {
           setRandomPokemonImage(data.sprites.other.home.front_default);
+          setDataRandomPokemon(data);
         })
         .catch((error) => {
           console.log(error);
@@ -45,9 +49,12 @@ const Area = ({ i }) => {
   }, [area]);
 
   return (
-    <div>
-      {goBack ? (
-        <Locations />
+    <div>{
+      showBattle ? (<StartBattle selectedPokemon={selectedPokemon}
+        randomPokemonName={randomPokemonImage}
+        dataRandomPokemon={dataRandomPokemon } />
+        ) : goBack ? (
+        <Locations selectedPokemon={selectedPokemon}/>
       ) : randomPokemon ? (
         <div>
           <div id="battle"></div>
@@ -71,7 +78,7 @@ const Area = ({ i }) => {
           >
             Go Back
           </button>
-          <button id="location" className="battleButt">
+            <button onClick={()=>setShowBattle(true)} id="location" className="battleButt">
             Start Battle!
           </button>
         </div>
