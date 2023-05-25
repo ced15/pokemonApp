@@ -4,7 +4,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
     const [enemyHP, setEnemyHP] = useState(dataRandomPokemon.stats[0].base_stat)
     const [myPokemonHP, setMyPokemonHP] = useState(selectedPokemon[0].stats[0].base_stat)
     const [turn, setTurn] = useState(0)
-    console.log(selectedPokemon);
+    const [victory,setVictory] = useState(false)
 
     const calculateDamageEnemy = () => {
         const Z = Math.floor(Math.random() * (255 - 217 + 1)) + 217;
@@ -25,6 +25,9 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
             setEnemyHP(newEnemyHP)
             console.log(`Damage enemy inflicted: ${damage}`);
             console.log(`Defender's enemy HP: ${newEnemyHP}`)
+            if (enemyHP <= 0) {
+                alert("Your Pokemon has won !")
+            }
     
             setTurn(1)
         } else {
@@ -34,9 +37,14 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
                        console.log(`Damage My Pokemon inflicted: ${damageMyPokemon}`);
                        console.log(`Defender's My Pokemon HP: ${newMyPokemonHp}`);
 
-            setTurn(0);
+            if (myPokemonHP <= 0) {
+                alert("Your Pokemon has been defeated !");
+                
+            }
 
+            setTurn(0);
         }
+
     }
   return (
     <div id="finalBatt">
