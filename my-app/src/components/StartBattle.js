@@ -27,6 +27,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
             console.log(`Defender's enemy HP: ${newEnemyHP}`)
             if (newEnemyHP <= 0) {
               alert("Your Pokemon has won !");
+              window.location.reload()
             }
     
             setTurn(1)
@@ -39,6 +40,7 @@ const StartBattle = ({ selectedPokemon ,randomPokemonName,dataRandomPokemon}) =>
 
             if (newMyPokemonHp <= 0) {
               alert("Your Pokemon has been defeated !");
+                window.location.reload();
             }
 
             setTurn(0);
