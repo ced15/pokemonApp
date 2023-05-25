@@ -40,7 +40,7 @@ const SelectPokemon = () => {
   }, [inventory]);
 
   return (
-    <div>
+    <div id="start">
       {showLocations ? (
         <Locations />
       ) : (

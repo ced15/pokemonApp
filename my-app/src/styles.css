@@ -15,6 +15,20 @@ body {
     background-size: cover;
     height: 100%;
     width: 100%;
+    /* overflow-y: scroll; */
+    /* Additional properties for customization */
+    background-attachment: fixed;
+}
+#start {
+    /* margin: 0;
+    padding: 0; */
+    position: absolute;
+    background-image: url("../img/background.png");
+    /* background-color: #cccccc; */
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+    height: 100%;
+    width: 100%;
     overflow-y: scroll;
     /* Additional properties for customization */
     background-attachment: fixed;
@@ -314,7 +328,7 @@ body {
     top: 0%;
     left: 0%;
     position: absolute;
-    background-image: url("https://cdn.discordapp.com/attachments/446308522142203907/1111180029318152222/12-for.png");
+    background-image: url("../img/battle.png");
     background-size: cover;
     height: 100%;
     /* z-index: 1; */
