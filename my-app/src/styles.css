@@ -266,7 +266,7 @@ body {
 .battleButt {
     position: relative;
     top: 1%;
-    left: 0%;
+    left: 60%;
 }
 
 #location:hover {
@@ -674,7 +674,7 @@ strong {
 #back {
     left: 0%;
     display: flex;
-    height: 10%;
+    /* height: 10%; */
     width: 100px;
     align-items: center;
     justify-content: center;
@@ -685,6 +685,7 @@ strong {
     cursor: pointer;
     border: none;
     background: #646bccb9;
+    height: 40%;
 }
 
 #back>svg {
@@ -776,24 +777,24 @@ strong {
 #img {
     position: absolute;
     /* Changed to absolute */
-    top: 0;
+    top: 5%;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
 }
+#hp {
 
-#hp{
-            color: #090909;
-            padding: 0.7em 1.7em;
-            font-size: 28px;
-            border-radius: 0.5em;
-            background: #e8e8e875;
-            border: 1px solid #e8e8e8;
-            transition: all .3s;
-            box-shadow: 6px 6px 12px #c5c5c5,
-                -6px -6px 12px #ffffff;
-                text-align: center;
-    
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 28px;
+    border-radius: 0.5em;
+    background: #e8e8e875;
+    border: 1px solid #e8e8e8;
+    transition: all .3s;
+    box-shadow: 6px 6px 12px #c5c5c5,
+        -6px -6px 12px #ffffff;
+    text-align: center;
+
 }
 
 #attack {
