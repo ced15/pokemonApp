@@ -266,7 +266,7 @@ body {
 .battleButt {
     position: relative;
     top: 1%;
-    left: 0%;
+    left: 60%;
 }
 
 #location:hover {
@@ -674,7 +674,7 @@ strong {
 #back {
     left: 0%;
     display: flex;
-    height: 10%;
+    /* height: 10%; */
     width: 100px;
     align-items: center;
     justify-content: center;
@@ -685,6 +685,7 @@ strong {
     cursor: pointer;
     border: none;
     background: #646bccb9;
+    height: 40%;
 }
 
 #back>svg {
